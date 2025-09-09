@@ -1,0 +1,5 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = "Mina's Math Art Gallery"
+
+theme = "math-gallery-theme"
