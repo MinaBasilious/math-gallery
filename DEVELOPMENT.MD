@@ -3,7 +3,7 @@
 ## Cloning the project
 
 ```bash
-git clone
+git clone https://github.com/MinaBasilious/math-gallery.git
 ```
 
 ## Installing dev dependencies
@@ -11,6 +11,8 @@ git clone
 ### Hugo
 
 ```bash
+# make sure you have go installed
+# go.dev/doc/install
 go install github.com/gohugoio/hugo@latest
 ```
 
@@ -19,7 +21,7 @@ go install github.com/gohugoio/hugo@latest
 pre-commit formats everything before pushing ensuring consistency
 
 ```bash
-# you have to have uv installed
+# make sure you have uv installed
 # docs.astral.sh/uv/getting-started/installation
 uv tool install pre-commit
 ```
