@@ -1,7 +1,37 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+  <h1>Posts tagged "{{ .Title }}"</h1>
   {{ .Content }}
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-  {{ end }}
+
+  <div class="posts-grid">
+    {{- range .Pages }}
+      <article class="post-card">
+        <a href="{{ .RelPermalink }}">
+          <div class="post-thumbnail">
+            {{ if .Params.thumbnail }}
+              <img src="{{ .Params.thumbnail }}" alt="{{ .Title }}" loading="lazy" />
+            {{ else }}
+              {{ $default := resources.Get "images/default-thumbnail.svg" }}
+              <img src="{{ $default.RelPermalink }}" alt="{{ .Title }}" loading="lazy" />
+            {{ end }}
+          </div>
+          <div class="post-card-body">
+            <h2 class="post-card-title">{{ .Title }}</h2>
+            <time class="post-card-date" datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">
+              {{ .Date.Format ":date_long" }}
+            </time>
+            {{ with .Description }}
+              <p class="post-card-description">{{ . }}</p>
+            {{ end }}
+            {{ with .Params.tags }}
+              <div class="post-card-tags">
+                {{- range . }}
+                  <span class="post-tag">{{ . }}</span>
+                {{- end }}
+              </div>
+            {{ end }}
+          </div>
+        </a>
+      </article>
+    {{- end }}
+  </div>
 {{ end }}

@@ -1,9 +1,28 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
+<article class="post-single">
+  <!-- Thumbnail -->
+  {{ with .Params.thumbnail }}
+    <div class="post-hero">
+      <img src="{{ . }}" alt="{{ $.Title }}" />
+    </div>
+  {{ end }}
 
-{{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }} {{
-$dateHuman := .Date | time.Format ":date_long" }}
-<time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+  <header class="post-header">
+    <h1>{{ .Title }}</h1>
 
-{{ .Content }} {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }} {{
-end }}
+    <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">
+      {{ .Date.Format ":date_long" }}
+    </time>
+
+    {{ with .Description }}
+      <p class="post-description">{{ . }}</p>
+    {{ end }}
+
+    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+  </header>
+
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

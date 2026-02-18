@@ -2,7 +2,9 @@
 date = '2025-09-09T19:46:00+03:00'
 draft = false
 title = 'Testing'
-tags = ['red','green']
+description = 'A TikZ diagram showing set products and complements'
+thumbnail = ''
+tags = ['red', 'green', 'tikz']
 +++
 
 ## TikZ

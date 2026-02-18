@@ -1,3 +1,105 @@
-{{ define "main" }} {{ .Content }} {{ range site.RegularPages }}
-<h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-{{ .Summary }} {{ end }} {{ end }}
+{{ define "main" }}
+  {{ .Content }}
+
+  <!-- Search bar -->
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="Search posts..." autocomplete="off" />
+  </div>
+
+  <!-- Tag filter -->
+  <div class="tag-filter" id="tag-filter">
+    <button class="tag-btn active" data-tag="all">All</button>
+    {{- $allTags := slice -}}
+    {{- range site.RegularPages -}}
+      {{- range .Params.tags -}}
+        {{- $allTags = $allTags | append . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $uniqueTags := $allTags | uniq | sort -}}
+    {{- range $uniqueTags }}
+      <button class="tag-btn" data-tag="{{ . | urlize }}">{{ . }}</button>
+    {{- end }}
+  </div>
+
+  <!-- Posts grid -->
+  <div class="posts-grid" id="posts-grid">
+    {{- range where site.RegularPages "Section" "posts" }}
+      <article class="post-card" data-tags="{{ delimit .Params.tags "," }}" data-title="{{ .Title | lower }}" data-description="{{ .Description | lower }}">
+        <a href="{{ .RelPermalink }}">
+          <div class="post-thumbnail">
+            {{ if .Params.thumbnail }}
+              <img src="{{ .Params.thumbnail }}" alt="{{ .Title }}" loading="lazy" />
+            {{ else }}
+              {{ $default := resources.Get "images/default-thumbnail.svg" }}
+              <img src="{{ $default.RelPermalink }}" alt="{{ .Title }}" loading="lazy" />
+            {{ end }}
+          </div>
+          <div class="post-card-body">
+            <h2 class="post-card-title">{{ .Title }}</h2>
+            <time class="post-card-date" datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">
+              {{ .Date.Format ":date_long" }}
+            </time>
+            {{ with .Description }}
+              <p class="post-card-description">{{ . }}</p>
+            {{ end }}
+            {{ with .Params.tags }}
+              <div class="post-card-tags">
+                {{- range . }}
+                  <span class="post-tag">{{ . }}</span>
+                {{- end }}
+              </div>
+            {{ end }}
+          </div>
+        </a>
+      </article>
+    {{- end }}
+  </div>
+
+  <p class="no-results" id="no-results" style="display:none;">No posts found.</p>
+
+  <script>
+    (function() {
+      const searchInput = document.getElementById('search-input');
+      const grid = document.getElementById('posts-grid');
+      const cards = grid.querySelectorAll('.post-card');
+      const tagButtons = document.querySelectorAll('.tag-btn');
+      const noResults = document.getElementById('no-results');
+
+      let activeTag = 'all';
+
+      function filterCards() {
+        const query = searchInput.value.toLowerCase().trim();
+        let visible = 0;
+
+        cards.forEach(card => {
+          const title = card.getAttribute('data-title') || '';
+          const description = card.getAttribute('data-description') || '';
+          const tags = card.getAttribute('data-tags') || '';
+
+          const matchesSearch = !query || title.includes(query) || description.includes(query);
+          const matchesTag = activeTag === 'all' || tags.split(',').some(t => t.trim().toLowerCase().replace(/\s+/g, '-') === activeTag);
+
+          if (matchesSearch && matchesTag) {
+            card.style.display = '';
+            visible++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        noResults.style.display = visible === 0 ? '' : 'none';
+      }
+
+      searchInput.addEventListener('input', filterCards);
+
+      tagButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          tagButtons.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          activeTag = this.getAttribute('data-tag');
+          filterCards();
+        });
+      });
+    })();
+  </script>
+{{ end }}

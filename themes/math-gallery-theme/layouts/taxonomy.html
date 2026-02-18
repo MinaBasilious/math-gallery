@@ -1,7 +1,10 @@
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
   {{ .Content }}
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-  {{ end }}
+
+  <div class="tag-list">
+    {{- range .Pages }}
+      <a href="{{ .RelPermalink }}" class="tag-chip">{{ .Title }} <span class="tag-count">({{ len .Pages }})</span></a>
+    {{- end }}
+  </div>
 {{ end }}

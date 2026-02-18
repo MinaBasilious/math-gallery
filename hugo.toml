@@ -3,3 +3,17 @@ languageCode = 'en-us'
 title = "Mina's Math Art Gallery"
 
 theme = "math-gallery-theme"
+
+[taxonomies]
+  tag = "tags"
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    noClasses = false
+    style = "monokai"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
