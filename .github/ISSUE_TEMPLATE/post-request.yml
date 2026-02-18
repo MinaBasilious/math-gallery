@@ -1,0 +1,63 @@
+name: Post Request
+description: Request a new post to be added to the Math Gallery
+title: "[Post] "
+labels: [post-request]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## New Post Request
+
+  - type: input
+    id: title
+    attributes:
+      label: Post title
+      description: What should the post be called?
+      placeholder: e.g. Taylor Series Expansion
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Brief summary of the topic or concept.
+      placeholder: Describe the math topic here...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Which area of math does this fall under?
+      options:
+        - Calculus
+        - Linear Algebra
+        - Abstract Algebra
+        - Analysis
+        - Topology
+        - Probability & Statistics
+        - Number Theory
+        - Geometry
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: content
+    attributes:
+      label: Content or references
+      description: Provide formulas, code, diagrams, or links to references.
+      placeholder: Paste LaTeX, code snippets, or reference links here...
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Suggested tags
+      description: Comma-separated tags for the post.
+      placeholder: e.g. calculus, series, math
+    validations:
+      required: false

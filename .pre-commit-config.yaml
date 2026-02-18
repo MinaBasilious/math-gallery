@@ -1,0 +1,33 @@
+repos:
+  # general hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+
+  # prettier (CSS, JS, Markdown, YAML (excludes Hugo templates))
+  - repo: local
+    hooks:
+      - id: prettier
+        name: prettier
+        entry: npx prettier --write
+        language: node
+        types_or: [css, javascript, markdown, yaml]
+        additional_dependencies: ["prettier@3.5.3"]
+        exclude: ^(public/|themes/.*/layouts/)
+
+  # hugo build check
+  - repo: local
+    hooks:
+      - id: hugo-build
+        name: hugo build check
+        entry: hugo --gc --cleanDestinationDir
+        language: system
+        pass_filenames: false
+        always_run: true
