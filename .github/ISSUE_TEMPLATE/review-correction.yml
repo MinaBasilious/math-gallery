@@ -1,0 +1,59 @@
+name: Post Review / Correction
+description: Report any issue with a post - math error, LaTeX typo, logic gap, or anything that seems off
+title: "[Review] "
+labels: [correction]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Post Review / Correction
+        Something look wrong? Let us know - math errors, broken LaTeX, unclear reasoning, anything.
+
+  - type: input
+    id: post-title
+    attributes:
+      label: Post title
+      description: Which post has the issue?
+      placeholder: e.g. Taylor Series Expansion
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Type of issue
+      options:
+        - Math / logic error
+        - LaTeX / notation issue
+        - Unclear or misleading explanation
+        - Typo or formatting
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: What seems wrong?
+      description: Point to the specific part and describe the issue.
+      placeholder: e.g. "The third line has a sign flip that doesn't follow from the previous step..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested correction
+      description: Optional - what should it say instead?
+      placeholder: Paste corrected LaTeX, a fix, or just your thoughts...
+    validations:
+      required: false
+
+  - type: textarea
+    id: reference
+    attributes:
+      label: Reference
+      description: Optional - any source backing the correction?
+      placeholder: Book, link, etc.
+    validations:
+      required: false

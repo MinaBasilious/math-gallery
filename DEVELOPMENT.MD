@@ -4,6 +4,7 @@
 
 ```bash
 git clone https://github.com/MinaBasilious/math-gallery.git
+cd math-gallery
 ```
 
 ## Installing dev dependencies
