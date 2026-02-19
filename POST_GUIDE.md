@@ -75,33 +75,47 @@ Use the `tikz` shortcode:
 ```
 
 The diagram renders in the browser via TikZJax - no build step needed.
+Use TikZ's own `scale` option to resize diagrams, e.g. `\begin{tikzpicture}[scale=0.5]`.
 
 ### Images
 
-Place images in the `static/images` folder, then
-reference them with an absolute path:
+Place images in the `static/images` folder, then reference them with an
+absolute path:
 
 ```markdown
 ![Alt text](/images/my-diagram.png)
 ```
 
+To control the size, use the `img` shortcode instead:
+
+```
+{{< img src="/images/my-diagram.png" alt="Alt text" width="50" >}}
+```
+
+| Parameter | Example               | Notes                                     |
+| --------- | --------------------- | ----------------------------------------- |
+| `src`     | `src="/images/x.png"` | Path to the image (required)              |
+| `alt`     | `alt="A diagram"`     | Alt text for accessibility                |
+| `width`   | `width="50"`          | Max width as % of container; default 100% |
+
 ### Videos
 
 Place videos in `static/videos/` and use the `videos` shortcode:
 
-```markdown
-{{</* video "/videos/my-clip.mp4" */>}}
+```
+{{< video src="/videos/my-clip.mp4" >}}
 ```
 
 Optional parameters:
 
-| Parameter | Example             | Notes                                         |
-| --------- | ------------------- | --------------------------------------------- |
-| `width`   | `width="640"`       | Fixed pixel width; defaults to full container |
-| `type`    | `type="video/webm"` | MIME type; defaults to `video/mp4`            |
+| Parameter | Example                  | Notes                                     |
+| --------- | ------------------------ | ----------------------------------------- |
+| `src`     | `src="/videos/clip.mp4"` | Path to the video (required)              |
+| `width`   | `width="50"`             | Max width as % of container; default 100% |
+| `type`    | `type="video/webm"`      | MIME type; defaults to `video/mp4`        |
 
-```markdown
-{{</* video "/videos/my-clip.webm" type="video/webm" width="720" */>}}
+```
+{{< video src="/videos/my-clip.webm" type="video/webm" width="50" >}}
 ```
 
 ### Code blocks

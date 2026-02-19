@@ -1,4 +1,10 @@
-<video controls {{ with .Get "width" }}width="{{ . }}"{{ end }} style="max-width:100%;border-radius:0.5rem;">
-  <source src="{{ .Get 0 }}" type="{{ with .Get "type" }}{{ . }}{{ else }}video/mp4{{ end }}">
-  Your browser does not support the video tag.
-</video>
+{{ if .Get "width" }}
+<figure class="media-figure media-figure--sized" style="width:{{ .Get "width" }}%">
+{{ else }}
+<figure class="media-figure">
+{{ end }}
+  <video controls>
+    <source src="{{ .Get "src" }}" type="{{ with .Get "type" }}{{ . }}{{ else }}video/mp4{{ end }}">
+    Your browser does not support the video tag.
+  </video>
+</figure>

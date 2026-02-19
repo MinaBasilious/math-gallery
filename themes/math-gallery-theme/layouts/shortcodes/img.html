@@ -1,0 +1,9 @@
+{{ if .Get "width" }}
+<figure class="media-figure media-figure--sized" style="width:{{ .Get "width" }}%">
+{{ else }}
+<figure class="media-figure">
+{{ end }}
+  <img src="{{ .Get "src" }}"
+    {{ with .Get "alt" }}alt="{{ . }}"{{ else }}alt=""{{ end }}
+    loading="lazy" />
+</figure>
