@@ -126,4 +126,3 @@ Supported languages: `python`, `bash`, `javascript`, `html`, `toml`, and
 2. Run `hugo serve` to preview locally at <http://localhost:1313>.
 3. Commit and push - the build check pre-commit hook will verify the site
    builds cleanly before the push goes through.
-4. TODO I should add a github action to publish
