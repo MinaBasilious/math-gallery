@@ -4,4 +4,4 @@ draft = false
 title = 'About'
 +++
 
-Yeah I am built with Hugo
+Mina Basilious

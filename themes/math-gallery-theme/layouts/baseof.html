@@ -4,17 +4,44 @@
   dir="{{ or site.Language.LanguageDirection `ltr` }}"
 >
   <head>
+    <!-- Anti-flash: set theme before CSS loads -->
+    <script>
+      (function () {
+        var t = localStorage.getItem("theme");
+        if (!t)
+          t = window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
     {{ partial "head.html" . }}
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+        },
+      };
+    </script>
     <script
       async
       src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
     ></script>
+    {{- if strings.Contains .Content "text/tikz" }}
     <link
       rel="stylesheet"
       type="text/css"
       href="http://tikzjax.com/v1/fonts.css"
     />
     <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    {{- end }}
   </head>
   <body>
     <header>{{ partial "header.html" . }}</header>

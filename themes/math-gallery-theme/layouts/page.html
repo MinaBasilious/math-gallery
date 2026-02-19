@@ -11,8 +11,22 @@
     <h1>{{ .Title }}</h1>
 
     <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">
-      {{ .Date.Format ":date_long" }}
+      {{ .Date | time.Format ":date_long" }}
     </time>
+
+    {{- with .Params.coauthors }}
+      <div class="post-coauthors">
+        <span class="coauthors-label">Co-authored with</span>
+        {{- range $i, $a := . }}
+          {{- if $i }}, {{ end }}
+          {{- if $a.link }}
+            <a href="{{ $a.link }}">{{ $a.name }}</a>
+          {{- else }}
+            <span>{{ $a.name }}</span>
+          {{- end }}
+        {{- end }}
+      </div>
+    {{- end }}
 
     {{ with .Description }}
       <p class="post-description">{{ . }}</p>

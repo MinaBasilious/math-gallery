@@ -14,8 +14,8 @@ title = 'Math Nerd'
     weight = 20
 
   [[menus.main]]
-    name = 'Tags'
-    pageRef = '/tags'
+    name = 'About ME'
+    pageRef = '/about'
     weight = 30
 
 [module]

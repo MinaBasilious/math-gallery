@@ -85,6 +85,25 @@ reference them with an absolute path:
 ![Alt text](/images/my-diagram.png)
 ```
 
+### Videos
+
+Place videos in `static/videos/` and use the `videos` shortcode:
+
+```markdown
+{{</* video "/videos/my-clip.mp4" */>}}
+```
+
+Optional parameters:
+
+| Parameter | Example             | Notes                                         |
+| --------- | ------------------- | --------------------------------------------- |
+| `width`   | `width="640"`       | Fixed pixel width; defaults to full container |
+| `type`    | `type="video/webm"` | MIME type; defaults to `video/mp4`            |
+
+```markdown
+{{</* video "/videos/my-clip.webm" type="video/webm" width="720" */>}}
+```
+
 ### Code blocks
 
 Use fenced code blocks with a language tag for syntax highlighting:

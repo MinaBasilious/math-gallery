@@ -13,7 +13,7 @@ theme = "math-gallery-theme"
     guessSyntax = true
     lineNos = false
     noClasses = false
-    style = "monokai"
+    style = "gruvbox"
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
