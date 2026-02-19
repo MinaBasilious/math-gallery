@@ -4,4 +4,5 @@
   {{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title
   site.Title }}{{ end }}
 </title>
+<link rel="icon" type="image/svg+xml" href="{{ site.Home.RelPermalink }}favicon.svg" />
 {{ partialCached "head/css.html" . }} {{ partialCached "head/js.html" . }}
