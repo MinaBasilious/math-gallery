@@ -1,5 +1,5 @@
 <div class="nav-inner">
-  <a class="nav-brand" href="/">{{ site.Title }}</a>
+  <a class="nav-brand" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
   <div class="nav-actions">
     {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
     <button id="theme-toggle" aria-label="Toggle theme">
