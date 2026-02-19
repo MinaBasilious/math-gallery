@@ -1,0 +1,38 @@
+name: CI checks
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Prettier
+        run: npm install --global prettier@3.5.3
+
+      - name: Check formatting (Prettier)
+        run: |
+          prettier --check \
+            "**/*.{css,js,md,yaml,yml}" \
+            "!public/**" \
+            "!themes/*/layouts/**"
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.156.0"
+          extended: true
+
+      - name: Build
+        run: hugo --gc --cleanDestinationDir --minify
