@@ -4,6 +4,9 @@ title = "Mina's Math Art Gallery"
 
 theme = "math-gallery-theme"
 
+[pagination]
+  pagerSize = 12
+
 [taxonomies]
   tag = "tags"
 

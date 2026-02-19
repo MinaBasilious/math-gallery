@@ -24,7 +24,7 @@
 
   <!-- Posts grid -->
   <div class="posts-grid" id="posts-grid">
-    {{- range .Pages }}
+    {{- range .Paginator.Pages }}
       <article class="post-card" data-tags="{{ delimit .Params.tags "," }}" data-title="{{ .Title | lower }}" data-description="{{ .Description | lower }}">
         <a href="{{ .RelPermalink }}">
           <!-- Thumbnail -->
@@ -64,6 +64,9 @@
 
   <!-- No results message -->
   <p class="no-results" id="no-results" style="display:none;">No posts found.</p>
+
+  <!-- Pagination -->
+  {{ partial "pagination.html" . }}
 
   <!-- Search & filter script -->
   <script>

@@ -10,7 +10,7 @@
   <div class="tag-filter" id="tag-filter">
     <button class="tag-btn active" data-tag="all">All</button>
     {{- $allTags := slice -}}
-    {{- range site.RegularPages -}}
+    {{- range where site.RegularPages "Section" "posts" -}}
       {{- range .Params.tags -}}
         {{- $allTags = $allTags | append . -}}
       {{- end -}}
@@ -22,8 +22,9 @@
   </div>
 
   <!-- Posts grid -->
+  {{- $pages := where site.RegularPages "Section" "posts" -}}
   <div class="posts-grid" id="posts-grid">
-    {{- range where site.RegularPages "Section" "posts" }}
+    {{- range (.Paginate $pages).Pages }}
       <article class="post-card" data-tags="{{ delimit .Params.tags "," }}" data-title="{{ .Title | lower }}" data-description="{{ .Description | lower }}">
         <a href="{{ .RelPermalink }}">
           <div class="post-thumbnail">
@@ -56,6 +57,9 @@
   </div>
 
   <p class="no-results" id="no-results" style="display:none;">No posts found.</p>
+
+  <!-- Pagination -->
+  {{ partial "pagination.html" . }}
 
   <script>
     (function() {
