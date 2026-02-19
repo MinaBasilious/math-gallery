@@ -77,6 +77,13 @@ Use the `tikz` shortcode:
 The diagram renders in the browser via TikZJax - no build step needed.
 Use TikZ's own `scale` option to resize diagrams, e.g. `\begin{tikzpicture}[scale=0.5]`.
 
+Optional parameters:
+
+| Parameter | Example                   | Notes                                                         |
+| --------- | ------------------------- | ------------------------------------------------------------- |
+| `caption` | `caption="Step diagram."` | Caption shown below the diagram                               |
+| `id`      | `id="fig-walk"`           | Anchor id; auto-generated as `fig-1`, `fig-2`, ... if omitted |
+
 ### Images
 
 Place images in the `static/images` folder, then reference them with an
@@ -88,33 +95,91 @@ absolute path:
 
 To control the size, use the `img` shortcode instead:
 
-```
-{{< img src="/images/my-diagram.png" alt="Alt text" width="50" >}}
+```markdown
+{{< img src="/images/my-diagram.png" caption="A random walk after 1000 steps." width="50" >}}
 ```
 
-| Parameter | Example               | Notes                                     |
-| --------- | --------------------- | ----------------------------------------- |
-| `src`     | `src="/images/x.png"` | Path to the image (required)              |
-| `alt`     | `alt="A diagram"`     | Alt text for accessibility                |
-| `width`   | `width="50"`          | Max width as % of container; default 100% |
+| Parameter | Example                    | Notes                                                         |
+| --------- | -------------------------- | ------------------------------------------------------------- |
+| `src`     | `src="/images/x.png"`      | Path to the image (required)                                  |
+| `caption` | `caption="A random walk."` | Caption shown below; also used as alt text                    |
+| `width`   | `width="50"`               | Max width as % of container; default 100%                     |
+| `id`      | `id="fig-walk"`            | Anchor id; auto-generated as `fig-1`, `fig-2`, ... if omitted |
+
+### Tables
+
+For plain tables with no caption or cross-reference, use standard Markdown syntax:
+
+```markdown
+| Column A | Column B |
+| -------- | -------- |
+| value    | value    |
+```
+
+To add a caption or a linkable anchor, wrap the table in the `table` shortcode:
+
+```markdown
+{{< table id="tbl-transitions" caption="The four possible transitions from $f_m(k)$." >}}
+| Direction | Probability |
+| ----------- | ----------- |
+| $(+1,+1)$ | $1/4$ |
+| $(+1,-1)$ | $1/4$ |
+| $(-1,+1)$ | $1/4$ |
+| $(-1,-1)$ | $1/4$ |
+{{< /table >}}
+```
+
+| Parameter | Example                       | Notes                                                         |
+| --------- | ----------------------------- | ------------------------------------------------------------- |
+| `caption` | `caption="Transition table."` | Caption shown below the table                                 |
+| `id`      | `id="tbl-transitions"`        | Anchor id; auto-generated as `tbl-1`, `tbl-2`, ... if omitted |
+
+### Cross-referencing
+
+Both the `img` and `tikz` shortcodes accept an optional `id` parameter that
+places an HTML `id` on the figure wrapper, making it a linkable anchor.
+
+```markdown
+{{< img src="/images/random-walk.png" id="fig-walk" >}}
+{{< tikz id="fig-diagram" >}}...{{< /tikz >}}
+```
+
+**Same page** plain hash link:
+
+```markdown
+[see Figure](#fig-walk)
+```
+
+**Cross-post** use Hugo's `relref` shortcode:
+
+```markdown
+[see Figure]({{< relref "other-post.md#fig-walk" >}})
+```
+
+Keep ids short and descriptive. Prefix with `fig-` by convention to avoid
+conflicts with heading anchors.
+
+---
 
 ### Videos
 
 Place videos in `static/videos/` and use the `videos` shortcode:
 
-```
+```markdown
 {{< video src="/videos/my-clip.mp4" >}}
 ```
 
 Optional parameters:
 
-| Parameter | Example                  | Notes                                     |
-| --------- | ------------------------ | ----------------------------------------- |
-| `src`     | `src="/videos/clip.mp4"` | Path to the video (required)              |
-| `width`   | `width="50"`             | Max width as % of container; default 100% |
-| `type`    | `type="video/webm"`      | MIME type; defaults to `video/mp4`        |
+| Parameter | Example                  | Notes                                                         |
+| --------- | ------------------------ | ------------------------------------------------------------- |
+| `src`     | `src="/videos/clip.mp4"` | Path to the video (required)                                  |
+| `caption` | `caption="Simulation."`  | Caption shown below the video                                 |
+| `width`   | `width="50"`             | Max width as % of container; default 100%                     |
+| `type`    | `type="video/webm"`      | MIME type; defaults to `video/mp4`                            |
+| `id`      | `id="fig-walk"`          | Anchor id; auto-generated as `fig-1`, `fig-2`, ... if omitted |
 
-```
+```markdown
 {{< video src="/videos/my-clip.webm" type="video/webm" width="50" >}}
 ```
 

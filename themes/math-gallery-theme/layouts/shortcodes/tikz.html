@@ -1,5 +1,8 @@
-<div class="tikz-figure">
-  <script type="text/tikz">
-    {{ .Inner }}
-  </script>
+<div class="tikz-wrap"{{ with .Get "id" }} id="{{ . }}"{{ end }}>
+  <div class="tikz-figure">
+    <script type="text/tikz">
+      {{ .Inner }}
+    </script>
+  </div>
+  {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
 </div>

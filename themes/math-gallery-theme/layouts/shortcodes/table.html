@@ -1,0 +1,4 @@
+<div class="table-wrap"{{ with .Get "id" }} id="{{ . }}"{{ end }}>
+  {{ .Inner | markdownify }}
+  {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</div>

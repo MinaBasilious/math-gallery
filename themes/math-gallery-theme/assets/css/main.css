@@ -592,6 +592,11 @@ a.page-btn:hover {
   margin: 1rem 0;
 }
 
+.table-wrap .post-content table,
+.table-wrap table {
+  margin: 0;
+}
+
 .post-content th,
 .post-content td {
   border: 1px solid var(--border);
@@ -627,6 +632,77 @@ li code {
 }
 
 /* ============================================================
+   Anchor links  (headings + figures)
+   ============================================================ */
+
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  position: relative;
+}
+
+.heading-anchor {
+  opacity: 0;
+  margin-left: 0.35em;
+  color: var(--text-muted);
+  text-decoration: none;
+  vertical-align: middle;
+  transition:
+    opacity var(--transition),
+    color var(--transition);
+}
+
+.post-content h2:hover .heading-anchor,
+.post-content h3:hover .heading-anchor,
+.post-content h4:hover .heading-anchor,
+.post-content h5:hover .heading-anchor,
+.post-content h6:hover .heading-anchor {
+  opacity: 1;
+}
+
+.heading-anchor:hover {
+  color: var(--accent);
+}
+
+/* Figure anchor - bottom-right corner, shown on hover */
+.media-figure,
+.tikz-wrap,
+.table-wrap {
+  position: relative;
+}
+
+.fig-anchor {
+  position: absolute;
+  bottom: 0.4rem;
+  right: 0.5rem;
+  opacity: 0;
+  color: var(--text-muted);
+  text-decoration: none;
+  line-height: 1;
+  transition:
+    opacity var(--transition),
+    color var(--transition);
+}
+
+/* Tables: anchor sits top-right so it's always visible on long tables */
+.fig-anchor--top {
+  bottom: auto;
+  top: 0.4rem;
+}
+
+.media-figure:hover .fig-anchor,
+.tikz-wrap:hover .fig-anchor,
+.table-wrap:hover .fig-anchor {
+  opacity: 1;
+}
+
+.fig-anchor:hover {
+  color: var(--accent);
+}
+
+/* ============================================================
    Media figures (img / video shortcodes)
    ============================================================ */
 
@@ -653,6 +729,15 @@ li code {
 .media-figure--sized img,
 .media-figure--sized video {
   width: 100%;
+}
+
+/* Captions */
+figcaption {
+  margin-top: 0.4rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
 }
 
 /* ============================================================
@@ -771,7 +856,7 @@ script[type="text/tikz"] + svg,
     font-size: 1rem;
   }
 
-  /* Footer: 2 rows — (nav + social) then copyright */
+  /* Footer: 2 rows - (nav + social) then copyright */
   .footer-links {
     flex-direction: row;
     flex-wrap: wrap;

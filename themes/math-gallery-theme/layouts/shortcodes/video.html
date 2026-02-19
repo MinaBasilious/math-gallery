@@ -1,10 +1,11 @@
 {{ if .Get "width" }}
-<figure class="media-figure media-figure--sized" style="width:{{ .Get "width" }}%">
+<figure class="media-figure media-figure--sized" style="width:{{ .Get "width" }}%"{{ with .Get "id" }} id="{{ . }}"{{ end }}>
 {{ else }}
-<figure class="media-figure">
+<figure class="media-figure"{{ with .Get "id" }} id="{{ . }}"{{ end }}>
 {{ end }}
   <video controls>
     <source src="{{ .Get "src" }}" type="{{ with .Get "type" }}{{ . }}{{ else }}video/mp4{{ end }}">
     Your browser does not support the video tag.
   </video>
+  {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>
