@@ -6,3 +6,9 @@
 </title>
 <link rel="icon" type="image/svg+xml" href="{{ site.Home.RelPermalink }}favicon.svg" />
 {{ partialCached "head/css.html" . }} {{ partialCached "head/js.html" . }}
+<style>
+  /* tikzjax SVG text uses the loaded fonts.css classes */
+  .tikzjax svg text {
+    font-family: "Computer Modern", serif;
+  }
+</style>
