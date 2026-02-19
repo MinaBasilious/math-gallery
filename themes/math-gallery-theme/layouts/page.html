@@ -10,9 +10,11 @@
   <header class="post-header">
     <h1>{{ .Title }}</h1>
 
+    {{ if ne .Params.showDate false }}
     <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">
-      {{ .Date | time.Format ":date_long" }}
+      {{ .Date | time.Format "Jan 2, 2006" }}
     </time>
+    {{ end }}
 
     {{- with .Params.coauthors }}
       <div class="post-coauthors">
