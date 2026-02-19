@@ -67,11 +67,11 @@ $$
 Use the `tikz` shortcode:
 
 ```markdown
-{{</* tikz */>}}
+{{< tikz >}}
 \begin{tikzpicture}
 \draw (0,0) circle (1cm);
 \end{tikzpicture}
-{{</* /tikz */>}}
+{{< /tikz >}}
 ```
 
 The diagram renders in the browser via TikZJax - no build step needed.
