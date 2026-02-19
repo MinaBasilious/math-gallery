@@ -1,7 +1,9 @@
 <div class="nav-inner">
   <a class="nav-brand" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
   <div class="nav-actions">
-    {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+    <div id="main-nav">
+      {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+    </div>
     <button id="theme-toggle" aria-label="Toggle theme">
       <!-- Moon icon (shown in dark mode) -->
       <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -18,6 +20,13 @@
         <line x1="21" y1="12" x2="23" y2="12"/>
         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
       </svg>
     </button>
   </div>

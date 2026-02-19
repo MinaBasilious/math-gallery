@@ -18,14 +18,48 @@
   // Apply immediately (before DOM ready) to avoid flash
   applyTheme(getInitialTheme());
 
-  // Wire up button after DOM is ready
+  // Wire up buttons after DOM is ready
   document.addEventListener("DOMContentLoaded", function () {
-    const btn = document.getElementById("theme-toggle");
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      const next =
-        root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      applyTheme(next);
-    });
+    const themeBtn = document.getElementById("theme-toggle");
+    if (themeBtn) {
+      themeBtn.addEventListener("click", function () {
+        const next =
+          root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        applyTheme(next);
+      });
+    }
+
+    const navToggle = document.getElementById("nav-toggle");
+    const mainNav = document.getElementById("main-nav");
+    if (navToggle && mainNav) {
+      // Create backdrop
+      const backdrop = document.createElement("div");
+      backdrop.id = "nav-backdrop";
+      document.body.appendChild(backdrop);
+
+      function openNav() {
+        mainNav.classList.add("nav-open");
+        backdrop.classList.add("nav-backdrop-visible");
+        document.body.style.overflow = "hidden";
+        navToggle.setAttribute("aria-expanded", "true");
+      }
+
+      function closeNav() {
+        mainNav.classList.remove("nav-open");
+        backdrop.classList.remove("nav-backdrop-visible");
+        document.body.style.overflow = "";
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+
+      navToggle.addEventListener("click", function () {
+        mainNav.classList.contains("nav-open") ? closeNav() : openNav();
+      });
+
+      backdrop.addEventListener("click", closeNav);
+
+      mainNav.addEventListener("click", function (e) {
+        if (e.target.tagName === "A") closeNav();
+      });
+    }
   });
 })();
