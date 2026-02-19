@@ -189,9 +189,67 @@ nav ul li a.active {
 footer {
   border-top: 1px solid var(--border);
   margin-top: 2rem;
-  padding: 1rem;
+  padding: 0 1rem;
   color: var(--text-muted);
   font-size: 0.875rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 1.25rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.footer-nav a,
+.footer-social a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color var(--transition);
+}
+
+.footer-nav a:hover,
+.footer-social a:hover {
+  color: var(--accent);
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.footer-copy a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer-copy a:hover {
+  color: var(--accent);
 }
 
 /* ============================================================
