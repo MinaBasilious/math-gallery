@@ -3,7 +3,7 @@
   <!-- Thumbnail -->
   {{ with .Params.thumbnail }}
     <div class="post-hero">
-      <img src="{{ . }}" alt="{{ $.Title }}" />
+      <img src="{{ site.Home.RelPermalink }}{{ . | strings.TrimPrefix "/" }}" alt="{{ $.Title }}" />
     </div>
   {{ end }}
 

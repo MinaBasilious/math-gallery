@@ -30,7 +30,7 @@
           <!-- Thumbnail -->
           <div class="post-thumbnail">
             {{ if .Params.thumbnail }}
-              <img src="{{ .Params.thumbnail }}" alt="{{ .Title }}" loading="lazy" />
+              <img src="{{ site.Home.RelPermalink }}{{ .Params.thumbnail | strings.TrimPrefix "/" }}" alt="{{ .Title }}" loading="lazy" />
             {{ else }}
               {{ $default := resources.Get "images/default-thumbnail.svg" }}
               <img src="{{ $default.RelPermalink }}" alt="{{ .Title }}" loading="lazy" />
