@@ -10,7 +10,9 @@ tags = ['Random', 'Recursion']
 # ]
 +++
 
-For each index $m\in{0,\dots,20}$ define a discrete planar random walk $f_m:{0,1,\dots,1000}\to\mathbb{Z}^2$ by the recurrence
+If you want to see the graph evolving for $n$ ranging from $0$ to $1000$ for each of the 21 paths see this [video](#fig-4).
+
+For each index $m\in\set{0,\dots,20}$ define a discrete planar random walk $f_m:\set{0,1,\dots,1000}\to\mathbb{Z}^2$ by the recurrence
 
 $$
 f_m(0) = (0,0),
@@ -22,10 +24,10 @@ $$
 f_m(n) = f_m(n-1) + \big(X_{m,n},Y_{m,n}\big),
 $$
 
-where $X_{m,n}$ and $Y_{m,n}$ are independent random variables taking values in ${-1, +1}$ (each with equal probability). In words: at each step the walker moves one unit horizontally and one unit vertically, each independently chosen to be +1 or −1.
+where $X_{m,n}$ and $Y_{m,n}$ are independent random variables taking values in $\set{-1, +1}$ (each with probability $\frac12$). In other words: at each step the walker moves one unit horizontally and one unit vertically, each independently chosen to be +1 or −1.
 
-So, the next step is a diagonal step. From $f_k$, there are four equally likely choices, each with probability $\frac{1}{4}$:
-$$f_{k+1} \in \set{ f_k + (\pm 1,\, \pm 1) \}$$
+So, the next step is a diagonal step. From $f(k)$, there are four equally likely choices, each with probability $\frac{1}{4}$:
+$$f(k+1) \in \set{ f(k) + (\pm 1, \pm 1) \}$$
 which looks like the following [graph](#fig-1).
 {{< tikz >}}
 \begin{tikzpicture}[transform shape, scale=2]
@@ -55,7 +57,7 @@ which looks like the following [graph](#fig-1).
 
 \end{tikzpicture}
 {{< /tikz >}}
-Graphing all possible branches of $f_{k-1} \to f_k \to f_{k+1}$, we notice that exactly one of the four possible steps from $f_k$ leads back to $f_{k-1}$, giving a probability of $\frac{1}{4}$ of returning, which explains the isolated spikes observed in the [graph](#fig-2).
+When we graph all possible branches of $f(k-1) \to f(k) \to f(k+1)$, we notice that exactly one of the four possible steps from $f(k)$ leads back to $f(k-1)$, giving a probability of $\frac{1}{4}$ of returning, which explains the isolated spikes observed in the [graph](#fig-2).
 {{< tikz >}}
 \begin{tikzpicture}[>=stealth,thick, transform shape, scale=2]
 
@@ -71,17 +73,17 @@ ab/.style={->,teal!60!black, thick, shorten >=7pt, shorten <=3pt},
 \draw[teal!60!black, line width=1.6pt] (0,0) circle (9pt);
 
 \node[n0] (r) at (0,0) {};
-\node[font=\scriptsize, orange!70!black] at (0,0.75) {$f_{k-1}$};
+\node[font=\scriptsize, orange!70!black] at (0,0.75) {$f(k-1)$};
 
 \node[n1] (k1) at ( 2.2, 2.2) {};
 \node[n1] (k2) at ( 2.2,-2.2) {};
 \node[n1] (k3) at (-2.2, 2.2) {};
 \node[n1] (k4) at (-2.2,-2.2) {};
 
-\node[font=\scriptsize,blue!60!black] at ( 2.3, 2.8) {$f_k^{(1)}$};
-\node[font=\scriptsize,blue!60!black] at ( 2.3,-1.6) {$f_k^{(2)}$};
-\node[font=\scriptsize,blue!60!black] at (-2.1, 2.8) {$f_k^{(3)}$};
-\node[font=\scriptsize,blue!60!black] at (-2.1,-1.6) {$f_k^{(4)}$};
+\node[font=\scriptsize,blue!60!black] at ( 2.3, 2.8) {$f(k)^{(1)}$};
+\node[font=\scriptsize,blue!60!black] at ( 2.3,-1.6) {$f(k)^{(2)}$};
+\node[font=\scriptsize,blue!60!black] at (-2.1, 2.8) {$f(k)^{(3)}$};
+\node[font=\scriptsize,blue!60!black] at (-2.1,-1.6) {$f(k)^{(4)}$};
 
 \draw[a0](r)--(k1); \draw[a0](r)--(k2);
 \draw[a0](r)--(k3); \draw[a0](r)--(k4);
@@ -119,9 +121,9 @@ ab/.style={->,teal!60!black, thick, shorten >=7pt, shorten <=3pt},
 \fill[orange!80!red] (5.8, 0.6) circle (3.5pt);
 \fill[blue!60!black] (5.8, 0.0) circle (2.8pt);
 \fill[teal!60!black] (5.8,-0.6) circle (2.0pt);
-\node[font=\scriptsize,orange!70!black] at (7.2, 0.6) {$f_{k-1}$};
-\node[font=\scriptsize,blue!60!black] at (7.2, 0.0) {$f_{k}$};
-\node[font=\scriptsize,teal!60!black] at (7.2,-0.6) {$f_{k+1}$};
+\node[font=\scriptsize,orange!70!black] at (7.2, 0.6) {$f(k-1)$};
+\node[font=\scriptsize,blue!60!black] at (7.2, 0.0) {$f(k)$};
+\node[font=\scriptsize,teal!60!black] at (7.2,-0.6) {$f(k+1)$};
 \draw[ab,shorten >=0pt,shorten <=0pt]
 (6.6,-1.2)--(5.6,-1.2);
 \node[font=\scriptsize,teal!60!black] at (6.5,-1.5) {returns to $f_{k-1}$};
@@ -129,8 +131,9 @@ ab/.style={->,teal!60!black, thick, shorten >=7pt, shorten <=3pt},
 \end{tikzpicture}
 {{< /tikz >}}
 The simplest closed loop occurs along the path
-$$f_k \to f_{k+1} \to f_{k+2} \to f_{k+3} \to f_{k+4}$$
-where $f_{k+4} = f_k$, yet $f_k \neq f_{k+2}$ and $f_{k+1} \neq f_{k+3}$, tracing a tilted square, as shown in the [figure below](#fig-3).
+
+$$f(k) \to f(k+1) \to f(k+2) \to f(k+3) \to f(k+4)$$
+where $f(k+4) = f(k)$, yet $f(k) \neq f(k+2)$ and $f(k+1) \neq f(k+3)$, tracing a tilted square, as shown in the [figure below](#fig-3).
 {{< tikz >}}
 \begin{tikzpicture}[>=stealth,thick, transform shape, scale=2]
 
@@ -169,15 +172,18 @@ arr/.style={->, thick, shorten >=4pt, shorten <=4pt},
 \fill[blue!60!black] (2,-2) circle (3.0pt);
 
 % labels
-\node[font=\scriptsize, orange!70!black] at (-0.75, 0.25) {$f_k$};
-\node[font=\scriptsize, teal!60!black] at (-0.75, -0.35) {$=f_{k+4}$};
-\node[font=\scriptsize, blue!60!black] at ( 2.0, 2.6) {$f_{k+1}$};
-\node[font=\scriptsize, blue!60!black] at ( 4.75, 0.0) {$f_{k+2}$};
-\node[font=\scriptsize, blue!60!black] at ( 2.0, -2.6) {$f_{k+3}$};
+\node[font=\scriptsize, orange!70!black] at (-0.75, 0.25) {$f(k)$};
+\node[font=\scriptsize, teal!60!black] at (-0.75, -0.35) {$=f(k+4)$};
+\node[font=\scriptsize, blue!60!black] at ( 2.0, 2.6) {$f(k+1)$};
+\node[font=\scriptsize, blue!60!black] at ( 4.75, 0.0) {$f(k+2)$};
+\node[font=\scriptsize, blue!60!black] at ( 2.0, -2.6) {$f(k+3)$};
 
 % caption
 \node[font=\scriptsize] at (2.0, -3.6)
-{4 diagonal steps close a square: $f_{k+4}=f_k$};
+{4 diagonal steps close a square: $f(k+4)=f(k)$};
 
 \end{tikzpicture}
 {{< /tikz >}}
+
+Here is the graph evolving.
+{{< video src="/videos/randomhorse.mp4" width="75" >}}
