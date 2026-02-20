@@ -3,7 +3,7 @@
 {{ else }}
 <figure class="media-figure"{{ with .Get "id" }} id="{{ . }}"{{ end }}>
 {{ end }}
-  <img src="{{ .Get "src" }}"
+  <img src="{{ site.Home.RelPermalink }}{{ .Get "src" | strings.TrimPrefix "/" }}"
     alt="{{ with .Get "caption" }}{{ . }}{{ end }}"
     loading="lazy" />
   {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
