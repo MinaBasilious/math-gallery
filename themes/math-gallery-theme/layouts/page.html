@@ -1,12 +1,5 @@
 {{ define "main" }}
 <article class="post-single">
-  <!-- Thumbnail -->
-  {{ with .Params.thumbnail }}
-    <div class="post-hero">
-      <img src="{{ site.Home.RelPermalink }}{{ . | strings.TrimPrefix "/" }}" alt="{{ $.Title }}" />
-    </div>
-  {{ end }}
-
   <header class="post-header">
     <h1>{{ .Title }}</h1>
 
@@ -36,6 +29,15 @@
 
     {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
   </header>
+
+  <!-- Thumbnail (shown after title unless showThumbnail = false) -->
+  {{ if ne .Params.showThumbnail false }}
+    {{ with .Params.thumbnail }}
+      <div class="post-hero">
+        <img src="{{ site.Home.RelPermalink }}{{ . | strings.TrimPrefix "/" }}" alt="{{ $.Title }}" />
+      </div>
+    {{ end }}
+  {{ end }}
 
   <div class="post-content">
     {{ .Content }}

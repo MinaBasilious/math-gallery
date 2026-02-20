@@ -532,10 +532,15 @@ a.page-btn:hover {
   max-width: 800px;
 }
 
-.post-hero img {
-  width: 100%;
-  border-radius: 0.5rem;
+.post-hero {
+  display: flex;
+  justify-content: center;
   margin-bottom: 1.5rem;
+}
+
+.post-hero img {
+  width: 75%;
+  border-radius: 0.5rem;
 }
 
 .post-header {
