@@ -5,7 +5,7 @@ title = 'Fat Star'
 description = ''
 thumbnail = '/images/fatstar.gif'
 # showThumbnail = false
-tags = []
+tags = ['Parameterized Graph']
 # coauthors = [
 #   { name = 'Jane Doe', link = 'mailto:jane@example.com' },
 # ]
