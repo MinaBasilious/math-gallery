@@ -1,6 +1,6 @@
 +++
 date = '2026-02-22T14:11:29+02:00'
-draft = true
+draft = false
 title = 'Seraph'
 description = ''
 thumbnail = '/images/Seraph.svg'
