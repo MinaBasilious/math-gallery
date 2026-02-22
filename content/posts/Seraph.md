@@ -24,5 +24,11 @@ $$f(z)= iz\sqrt i \ \mathrm{mod}(3,z)$$
 So, our graph is the image of this function.
 In other words,
 $$G=f(P).$$
-
+This a [video](#fig-1) of the graph transformation with linear interpolation.
 {{< video src="/videos/Seraph.mp4" width="75" >}}
+
+## Defintion of $\mathrm{mod}$ in complex numbers
+
+The $\mathrm{mod}$ is defined like
+$$\mathrm{mod}(z_1,z_2)=z_1-z_2 \ \mathrm{floor}\left(\frac{z_1}{z_2}\right) $$
+And here $\mathrm{floor}$ is the complex floor function [attributed to E.E. McDonnell](https://www.jsoftware.com/papers/eem/complexfloor.htm).
