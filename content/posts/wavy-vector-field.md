@@ -5,7 +5,7 @@ title = 'Wavy Vector Field'
 description = ''
 thumbnail = '/images/wavyfield.gif'
 # showThumbnail = false
-tags = []
+tags = ['Vector Field']
 # coauthors = [
 #   { name = 'Jane Doe', link = 'mailto:jane@example.com' },
 # ]
