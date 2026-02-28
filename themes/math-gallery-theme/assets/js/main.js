@@ -66,6 +66,28 @@
     const LINK_ICON =
       '<svg xmlns="http://www.w3.org/2000/svg" width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
 
+    function addCopyAnchor(anchorEl) {
+      anchorEl.addEventListener("click", function (e) {
+        e.preventDefault();
+        var url =
+          window.location.origin +
+          window.location.pathname +
+          anchorEl.getAttribute("href");
+        navigator.clipboard.writeText(url).then(function () {
+          // Navigate after copying
+          window.location.hash = anchorEl.getAttribute("href");
+          // Show tooltip feedback
+          var tip = document.createElement("span");
+          tip.className = "anchor-copied-tip";
+          tip.textContent = "Copied!";
+          anchorEl.appendChild(tip);
+          setTimeout(function () {
+            tip.remove();
+          }, 1500);
+        });
+      });
+    }
+
     var postContent = document.querySelector(".post-content");
     if (postContent) {
       // Headings
@@ -77,6 +99,7 @@
           a.href = "#" + h.id;
           a.setAttribute("aria-label", "Link to this section");
           a.innerHTML = LINK_ICON;
+          addCopyAnchor(a);
           h.appendChild(a);
         });
 
@@ -95,6 +118,7 @@
           a.href = "#" + fig.id;
           a.setAttribute("aria-label", "Link to this figure");
           a.innerHTML = LINK_ICON;
+          addCopyAnchor(a);
           fig.appendChild(a);
         });
 
@@ -110,6 +134,7 @@
         a.href = "#" + tbl.id;
         a.setAttribute("aria-label", "Link to this table");
         a.innerHTML = LINK_ICON;
+        addCopyAnchor(a);
         tbl.appendChild(a);
       });
     }

@@ -707,6 +707,42 @@ li code {
   color: var(--accent);
 }
 
+/* "Copied!" tooltip shown after clicking an anchor link */
+.anchor-copied-tip {
+  position: absolute;
+  bottom: calc(100% + 0.3rem);
+  right: 0;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15em 0.45em;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 1;
+  animation: anchor-tip-fade 1.5s ease forwards;
+}
+
+.heading-anchor .anchor-copied-tip {
+  bottom: calc(100% + 0.3rem);
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes anchor-tip-fade {
+  0% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /* ============================================================
    Media figures (img / video shortcodes)
    ============================================================ */
