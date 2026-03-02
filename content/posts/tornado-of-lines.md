@@ -20,7 +20,7 @@ $$Y_{1}(n)=\left(\cos\left(\frac{2\pi n}{1000}+\frac{2\pi}{5}\right)\right)^{3}$
 $$X_{2}(n)=\sin\left(\frac{5\pi n}{1000}+\frac{\pi}{3}\right)$$
 $$Y_{2}(n)=\sin\left(\frac{\pi n}{1000}+\frac{\pi}{10}\right)$$
 
-Hence each line as a function, $l:\mathbb N^+s \times \mathbb R ^{+}\to \mathcal P(\mathbb R^2)$, is defined as
+Hence each line as a function, $l:\mathbb N^+ \times \mathbb R ^{+}\to \mathcal P(\mathbb R^2)$, is defined as
 $$l(k,o)=\set{\left(1-t\right)\left(X_{1}\left(k\right),Y_{1}\left(k\right)\right)+t\left(X_{2}\left(k\right),Y_{2}\left(k\right)\right) \in \mathbb R^2 \mid t \in [0,o]}$$
 
 At the end, the graph is
