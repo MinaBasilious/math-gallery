@@ -11,7 +11,8 @@ tags = ['Lines']
 # ]
 +++
 
-![](/images/tornado.gif)
+{{< img src="/images/tornado.gif"  width="100" >}}
+
 This graph is defined by bunch of lines by defining two points, the start and the end, and then connect them.
 
 Each pair of points is defined by four functions which is
